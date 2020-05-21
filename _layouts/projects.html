@@ -22,7 +22,9 @@ layout: default
         <li>
             <hr class="separator"/><br/>
             {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-            <span class="post-meta">{{ project.date | date: date_format | prepend: 'Примерная дата крайней версии: '}}</span>
+            {%- assign n = 'now' | date: site.minima.date_format -%}
+            {%- assign pr = project.date | date: site.minima.date_format -%}
+            {%- if pr != n -%} <span class="post-meta">{{ project.date | date: date_format | prepend: 'Примерная дата крайней версии: '}}</span>{%- endif -%}
             <h3>
                 <a class="post-link" href="{{ project.url | relative_url }}">
                     {{ project.title | escape }}
